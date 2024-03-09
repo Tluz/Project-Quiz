@@ -19,3 +19,70 @@ exitBtn.onclick = () => {
     popupInfo.classList.remove('active');
     main.classList.remove('active');
 }
+
+continueBtn.onclick = () => {
+    quizSection.classList.add('active');
+    popupInfo.classList.remove('active');
+    main.classList.remove('active');
+    quizBox.classList.add('active');
+
+    showQuestions(0);
+    questionCounter(0);
+}
+
+const nextBtn = document.querySelector('.next-btn');
+
+let questionCount = 0;
+let questionsTotalNumber = questions.length;
+
+nextBtn.onclick = () => {
+    if (questionCount < questions.length - 1){
+    questionCount++;
+    showQuestions(questionCount);
+    questionCounter(questionCount);
+    } else {
+        console.log("opa");
+    }
+}
+// getting questions and options from array
+const questionOption =  document.querySelector('.option-list');
+
+function showQuestions(index){
+    const questionText = document.querySelector('.question-text');
+    
+
+    questionText.textContent = `${questions[index].numb}. ${questions[index].question}`;
+    questionOption.replaceChildren();
+
+    for (option in questions[index].options){
+        const newDiv = document.createElement("div");
+        const newSpan = document.createElement("span");
+
+        newSpan.textContent = `${questions[index].options[option]}`;
+        newDiv.className = "option";
+        newDiv.setAttribute('onClick', 'optionSelected(this)');
+
+        newDiv.appendChild(newSpan);
+        questionOption.appendChild(newDiv);
+    }
+}
+
+function questionCounter(index){
+    const questionTotal = document.querySelector('.question-total');
+    questionTotal.textContent = `${index+1} of ${questionsTotalNumber} questions`;
+}
+
+function optionSelected(answer){
+    let userAnswer = answer.textContent;
+    let correctAnswer = questions[questionCount].answer;
+    let allOptions = questionOption.children.length;
+
+
+    answer.classList.add(userAnswer==correctAnswer?"correct":"incorrect");
+
+    // if user has selected disable all options
+    for (let i=0; i < allOptions; i++){
+        questionOption.children[i].classList.add('disabled');
+    }
+
+}
