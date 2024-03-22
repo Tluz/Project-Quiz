@@ -28,18 +28,21 @@ continueBtn.onclick = () => {
 
     showQuestions(0);
     questionCounter(0);
+    headerScore();
 }
 
 const nextBtn = document.querySelector('.next-btn');
 
 let questionCount = 0;
 let questionsTotalNumber = questions.length;
+let userScore = 0;
 
 nextBtn.onclick = () => {
     if (questionCount < questions.length - 1){
     questionCount++;
     showQuestions(questionCount);
     questionCounter(questionCount);
+    nextBtn.classList.remove('active');
     } else {
         console.log("opa");
     }
@@ -78,11 +81,30 @@ function optionSelected(answer){
     let allOptions = questionOption.children.length;
 
 
-    answer.classList.add(userAnswer==correctAnswer?"correct":"incorrect");
+    //answer.classList.add(userAnswer==correctAnswer?"correct":"incorrect");
+    if (userAnswer == correctAnswer){
+        answer.classList.add('correct')
+        userScore +=1;
+        headerScore();
+    } else {
+        answer.classList.add('incorrect')
+        for (let i=0; i < allOptions; i++){
+            if (questionOption.children[i].textContent == correctAnswer){
+                questionOption.children[i].setAttribute('class', 'option correct');
+            }
+        }
+    }
 
     // if user has selected disable all options
     for (let i=0; i < allOptions; i++){
         questionOption.children[i].classList.add('disabled');
     }
 
+    nextBtn.classList.add('active');
+
+}
+
+function headerScore(){
+    const headerScoreText = document.querySelector('.header-score');
+    headerScoreText.textContent = `${userScore} / ${questionsTotalNumber}`;
 }
