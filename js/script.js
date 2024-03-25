@@ -31,6 +31,32 @@ continueBtn.onclick = () => {
     headerScore();
 }
 
+tryAgainBtn.onclick = () => {
+    nextBtn.classList.remove('active');
+    resultBox.classList.remove('active');
+    quizBox.classList.add('active');
+
+    questionCount = 0;
+    questionsTotalNumber = questions.length;
+    userScore = 0;
+    showQuestions(questionCount);
+    questionCounter(questionCount);
+}
+
+goHomeBtn.onclick = () => {
+    quizSection.classList.remove('active');
+    resultBox.classList.remove('active');
+    nextBtn.classList.remove('active');
+
+    questionCount = 0;
+    questionsTotalNumber = questions.length;
+    userScore = 0;
+    showQuestions(questionCount);
+    questionCounter(questionCount);
+
+    headerScore();
+}
+
 const nextBtn = document.querySelector('.next-btn');
 
 let questionCount = 0;
@@ -39,12 +65,12 @@ let userScore = 0;
 
 nextBtn.onclick = () => {
     if (questionCount < questions.length - 1){
-    questionCount++;
-    showQuestions(questionCount);
-    questionCounter(questionCount);
-    nextBtn.classList.remove('active');
+        questionCount++;
+        showQuestions(questionCount);
+        questionCounter(questionCount);
+        nextBtn.classList.remove('active');
     } else {
-        console.log("opa");
+        showResulBox();
     }
 }
 // getting questions and options from array
@@ -107,4 +133,30 @@ function optionSelected(answer){
 function headerScore(){
     const headerScoreText = document.querySelector('.header-score');
     headerScoreText.textContent = `${userScore} / ${questionsTotalNumber}`;
+}
+
+function showResulBox(){
+    quizBox.classList.remove('active');
+    resultBox.classList.add('active');
+
+    const scoreText = document.querySelector('.score-text');
+    scoreText.textContent = `Your Score ${userScore} out of ${questionsTotalNumber}`;
+
+    const circularProgress = document.querySelector('.circular-progress');
+    const progressValue = document.querySelector('.progress-value');
+    
+    let progressStartValue = -1;
+    let progressEndValue = (userScore/questionsTotalNumber)*100;
+    let speed = 20
+
+    let progress = setInterval(()=>{
+        progressStartValue++;
+
+        progressValue.textContent = `${progressStartValue}%`;
+        circularProgress.style.background = `conic-gradient(#c40094 ${progressStartValue*3.6}deg, rgba(255, 255, 255, .1) 0deg)`;
+
+        if (progressStartValue == progressEndValue){
+            clearInterval(progress)
+        }
+    }, speed)
 }
