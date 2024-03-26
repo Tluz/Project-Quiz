@@ -1,4 +1,9 @@
 @media screen and (max-aspect-ratio:4/3){
+    .main {
+        background: url('../images/background_v4.jpg') no-repeat;
+        background-size: cover;
+    }
+    
     .container{
         width: 100vw;
     }
@@ -32,13 +37,17 @@
         font-size: 2em;
     }
 
-    /* .quiz-box .quiz-header {
+    .quiz-box .quiz-header {
         display: inline-grid;
         justify-content: center;
-    } */
+    }
 
     .quiz-header span {
         font-size: 1em;
+    }
+
+    .quiz-header .header-score {
+        margin-top: 1vh;
     }
 
     .percentage-container .score-text {
