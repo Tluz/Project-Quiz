@@ -43,7 +43,7 @@ let questions = [
         ]
     },
     {
-        question: "Qual foi o primeiro jogo do coxa que o casal assitiu? E qual foi o placar?",
+        question: "Qual foi o primeiro jogo do coxa que o casal assistiu? E qual foi o placar?",
         answer: "D. Coritiba 1 X 0 Londrina",
         options: [
             "A. Coritiba 2 x 0 Londrina",
@@ -85,12 +85,12 @@ let questions = [
     {
         question: "Nas conversas de whatsapp,  qual a figurinha mais utilizada por Luiza? E por Tobias?",
         answer: "C. Poodle sorridente e Homer coxa-branca",
-        description: "Luiza utilizou a figurinha do poodle sorridente 178 vezes e Tobias utilizou a figuurinha do Homer coxa-branca 36 vezes.",
+        description: "Luiza utilizou a figurinha do poodle sorridente 178 vezes e Tobias utilizou a figurinha do Homer coxa-branca 36 vezes.",
         options: [
-            "A. Husky encarando e Lula safado",
+            "A. Husky fazendo careta e Lula safado",
             "B. Gatinho te quiero e Val fazendo coração",
             "C. Poodle sorridente e Homer coxa-branca",
-            "D. Cachorro de perca e Homer coxa-branca"
+            "D. Cachorro de peruca e Homer coxa-branca"
         ]
     },
     {
