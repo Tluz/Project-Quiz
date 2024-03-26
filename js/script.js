@@ -41,6 +41,8 @@ tryAgainBtn.onclick = () => {
     userScore = 0;
     showQuestions(questionCount);
     questionCounter(questionCount);
+
+    headerScore();
 }
 
 goHomeBtn.onclick = () => {
@@ -80,7 +82,7 @@ function showQuestions(index){
     const questionText = document.querySelector('.question-text');
     
 
-    questionText.textContent = `${questions[index].numb}. ${questions[index].question}`;
+    questionText.textContent = `${index+1}. ${questions[index].question}`;
     questionOption.replaceChildren();
 
     for (option in questions[index].options){
@@ -98,7 +100,7 @@ function showQuestions(index){
 
 function questionCounter(index){
     const questionTotal = document.querySelector('.question-total');
-    questionTotal.textContent = `${index+1} of ${questionsTotalNumber} questions`;
+    questionTotal.textContent = `${index+1} de ${questionsTotalNumber} perguntas`;
 }
 
 function optionSelected(answer){
@@ -140,14 +142,37 @@ function showResulBox(){
     resultBox.classList.add('active');
 
     const scoreText = document.querySelector('.score-text');
-    scoreText.textContent = `Your Score ${userScore} out of ${questionsTotalNumber}`;
+    scoreText.textContent = `Você acertou ${userScore} de ${questionsTotalNumber} questões`;
 
     const circularProgress = document.querySelector('.circular-progress');
     const progressValue = document.querySelector('.progress-value');
     
     let progressStartValue = -1;
-    let progressEndValue = (userScore/questionsTotalNumber)*100;
+    let progressEndValue = Math.round((userScore/questionsTotalNumber)*100);
     let speed = 20
+
+    const resultEvaluation = document.querySelector('.result-evaluation');
+    
+    switch (true) {
+        case (progressEndValue == 100):
+            resultEvaluation.textContent = 'Uau! Você acertou todas as questões do quiz. Parece até que está dentro do relacionamento!';
+            break;
+        case (progressEndValue > 90):
+            resultEvaluation.textContent = 'Parabéns! Você realmente é um especialista no relacionamento dos dois pombinhos. Impressionante!';
+            break;
+        case (progressEndValue >= 80):
+            resultEvaluation.textContent = 'Parabéns! Você passo no teste do quiz e mostrou que conhece o casal. Sinta-se orgulhoso!';
+            break;
+        case (progressEndValue > 50):
+            resultEvaluation.textContent = 'Você acertou mais da metade das questões. Está no caminho para se tornar um verdadeiro fã do casal.';
+            break;
+        case (progressEndValue > 0):
+            resultEvaluation.textContent = 'É... O importante é participar né. A menos que você seja a Luiza, aí sinta-se decepcionada.';
+            break;
+        case (progressEndValue == 0):
+            resultEvaluation.textContent = 'Zero? Sério mesmo?';
+            break;
+    }
 
     let progress = setInterval(()=>{
         progressStartValue++;
@@ -159,4 +184,5 @@ function showResulBox(){
             clearInterval(progress)
         }
     }, speed)
+
 }

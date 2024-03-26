@@ -214,7 +214,7 @@ a:active {
 
 .quiz-section .quiz-box {
     position: relative;
-    width: 500px;
+    width: 700px;
     background: transparent;
     border: 2px solid #c40094;
     border-radius: 6px;
@@ -412,6 +412,12 @@ a:active {
     font-weight: 600;
     margin-top: 20px;
 }
+
+.percentage-container .result-evaluation{
+    margin-top: 20px;
+    text-align: center;
+}
+
 
 .result-box .buttons{
     display: flex;
