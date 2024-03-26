@@ -22,7 +22,7 @@ let questions = [
         ]
     },
     {
-        question: "Qual era a música que estava tocando o primeiro beijo?",
+        question: "Qual era a música que estava tocando durante o primeiro beijo?",
         answer: "C. Love Story - Taylor Swift",
         description: "Não teria como ser mais romântico do que isso. Nossa a diva pop cantava ao fundo enquanto o casal se beijava pela primeira vez. ",
         options: [
